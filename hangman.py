@@ -2,13 +2,17 @@
 # Create your own ASCII art if you desire, but
 # ONLY AFTER getting the game logic working.
 from ascii_art import BANNER, HANGMAN_PICS
-from word_lists import impossible, easy, medium, hard, ai_settings
+from word_lists import impossible, easy, medium, hard, any, ai_settings
 from os import system
 import random
 
 def clear():
   system("clear")
 clear()
+exiting = ["exit()", "exire()", "quit()"]
+def is_exiting(input):
+  if input in exiting:
+    exit()
 # uncomment the import statement, below, when
 # you're ready to implement a one player version
 # of the game.
@@ -38,8 +42,11 @@ Tests? No tests for this project.
 def get_word(ai = False, word_choice = False):
   # This gets the word from either the player or the hangman AI
   if not ai:
-    return input("word?")
+    word = input("word?")
+    is_exiting(word)
+    return word
   elif ai:
+    is_exiting(word_choice)
     if word_choice == "easy":
       return random.choice(easy)
     if word_choice == "medium":
@@ -48,15 +55,19 @@ def get_word(ai = False, word_choice = False):
       return random.choice(hard)
     if word_choice == "impossible":
       return random.choice(impossible)
+    if word_choice == "any":
+      return random.choice(any)
 def get_guess(guessed ,ai=False):
   # This gets the guess from the second player or the potential AI
   if not ai:
     good_guess = False
     while not good_guess:
       guess = input("What is your guess? (1 letter)")
+      
+      is_exiting(guess)
       if guess == "~":
         return "~"
-      if guess not in guessed:
+      if guess not in guessed and len(guess) == 1:
         return guess
 def win(answer, current):
   # check if the player's guesses are the word
@@ -80,10 +91,12 @@ def play_hangman():
     got_is_ai = False
     while not got_is_ai:
       is_ai = input("singleplayer?? y/n: ")
+      is_exiting(is_ai)
       if is_ai == "y":
         got_difficulty = False
         while not got_difficulty:
-          difficulty_set = input("difficulty? easy, medium, hard, or impossible: ")
+          difficulty_set = input("difficulty? easy, medium, hard, impossible, or any: ")
+          is_exiting(difficulty_set)
           if difficulty_set in ai_settings:
             got_difficulty = True
           print("Spell correctly you idiot")
@@ -111,7 +124,7 @@ def play_hangman():
     # repeat until the word is guessed
     while not guessed:
       print(disp_word)
-      print("you already guessed", guessed_letters)
+      print("you already guessed:", guessed_letters)
       guess = (get_guess(guessed_letters)).lower()
       if guess == "~":
         clear()
