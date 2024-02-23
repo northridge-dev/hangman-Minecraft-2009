@@ -5,3 +5,6 @@ easy = "hello get good thou fool guess who joe word dead nope yes book essay foo
 medium = "jokingly liberty treatise republican democratic".split(" ")
 hard = "authoritarian foolhearty characteristic".split(" ")
 impossible = "supercalifragilisticexpialidocious pneumonoultramicroscopicsilicovolcanoconiosis hippopotomonstrosesquippedaliophobia pseudopseudohypoparathyroidism floccinaucinihilipilification".split(" ")
+
+# list for all words
+ai_settings = ["easy", "medium", "hard", "impossible"]

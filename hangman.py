@@ -2,7 +2,7 @@
 # Create your own ASCII art if you desire, but
 # ONLY AFTER getting the game logic working.
 from ascii_art import BANNER, HANGMAN_PICS
-from word_lists import impossible, easy, medium, hard
+from word_lists import impossible, easy, medium, hard, ai_settings
 from os import system
 import random
 
@@ -81,7 +81,12 @@ def play_hangman():
     while not got_is_ai:
       is_ai = input("singleplayer?? y/n: ")
       if is_ai == "y":
-        difficulty_set = input("difficulty? easy, medium, hard, or impossible: ")
+        got_difficulty = False
+        while not got_difficulty:
+          difficulty_set = input("difficulty? easy, medium, hard, or impossible: ")
+          if difficulty_set in ai_settings:
+            got_difficulty = True
+          print("Spell correctly you idiot")
         secret_word = (get_word(True, difficulty_set)).lower()
         got_is_ai = True
       if is_ai == "n":
