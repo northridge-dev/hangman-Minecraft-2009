@@ -17,7 +17,7 @@ BANNER = """
 
 """
 
-zero_misses = """
+six = """
   +---+
       |
       |
@@ -25,42 +25,42 @@ zero_misses = """
     ====="""
 
 
-one_misses = """
+five = """
   +---+
   O   |
       |
       |
     ====="""
 
-two_misses = """
+four = """
   +---+
   O   |
   |   |
       |
     ====="""
 
-three_misses = """
+three = """
   +---+
   O   |
  /|   |
       |
     ====="""
 
-four_misses = """
+two = """
   +---+
   O   |
  /|\  |
       |
     ====="""
 
-five_misses = """
+one = """
   +---+
   O   |
  /|\  |
  /    |
     ====="""
 
-game_over = """
+dead = """
   +---+
   O   |
  /|\  |
@@ -68,11 +68,11 @@ game_over = """
     ====="""
 
 HANGMAN_PICS = [
-    zero_misses,
-    one_misses,
-    two_misses,
-    three_misses,
-    four_misses,
-    five_misses,
-    game_over,
+    dead,
+    one,
+    two,
+    three,
+    four,
+    five,
+    six,
 ]
